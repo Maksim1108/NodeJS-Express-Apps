@@ -43,6 +43,24 @@ app.post("/blogs", (request, responce) => {
   });
 });
 
+app.get("/blogs/create", (req, res) => {
+  res.render("create").status(200);
+});
+
+app.delete("/blogs/:id", (request, responce) => {
+  const id = request.params.id
+  Blog.findByIdAndDelete(id).then(() => {
+    responce.json({ redirect: '/blogs'})
+  })
+});
+
+app.get("/blogs/:id", (request, responce) => {
+  const id = request.params.id;
+  Blog.findById(id).then((result) =>
+    responce.render("blogDetails", { blog: result, links })
+  );
+});
+
 app.get("/add-blog", (req, res) => {
   const blog = new Blog({
     title: "long established",
@@ -60,9 +78,7 @@ app.get("/blogs", (req, res) => {
 app.get("/about", (req, res) => {
   Blog.find().then((result) => res.render("about", { blogs: result, links }));
 });
-app.get("/blogs/create", (req, res) => {
-  res.render("create").status(200);
-});
+
 app.use((req, res) => {
   res.status(404).render("404");
 });
