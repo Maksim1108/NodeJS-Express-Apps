@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Blog = require("./models/blog");
 
 const dbURL =
-  "mongodb+srv://Maksim:Ebaloff1337228@cluster0.rmwa6.mongodb.net/NodeJS?retryWrites=true&w=majority";
+  "mongodb+srv://Maksim:<password>@cluster0.rmwa6.mongodb.net/NodeJS?retryWrites=true&w=majority";
 
 mongoose
   .connect(dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
